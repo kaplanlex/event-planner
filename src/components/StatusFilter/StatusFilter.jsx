@@ -1,17 +1,34 @@
-// src/components/StatusFilter/StatusFilter.jsx
+import { useSelector, useDispatch } from 'react-redux';
+import { Button } from '../Button/Button';
+import { setStatusFilter } from '../../redux/filtersSlice';
 
-// 1. Імпортуємо хук
-import { useSelector } from "react-redux";
 
 export const StatusFilter = () => {
-    // 2. Отримуємо значення фільтра із стану Redux
-    const filter = useSelector(state => state.filters.status);
+    const dispatch = useDispatch();
+    const filter = useSelector((state) => state.filters.status);
+
+    const handleFilterChange = (filter) => dispatch(setStatusFilter(filter));
 
     return (
-        <div>
-            <button>All {filter === "all" && "is active"}</button>
-            <button>Active {filter === "active" && "is active"}</button>
-            <button>Completed {filter === "completed" && "is active"}</button>
+        <div >
+            <Button
+                selected={filter === 'all'}
+                onClick={() => handleFilterChange('all')}
+            >
+                All
+      </Button>
+            <Button
+                selected={filter === 'active'}
+                onClick={() => handleFilterChange('active')}
+            >
+                Active
+      </Button>
+            <Button
+                selected={filter === 'completed'}
+                onClick={() => handleFilterChange('completed')}
+            >
+                Completed
+      </Button>
         </div>
     );
 };
