@@ -1,6 +1,3 @@
-// src/components/TaskList/TaskList.js
-
-// 1. Імпортуємо хук
 import { useSelector } from 'react-redux';
 import { Task } from '../Task/Task';
 
@@ -16,13 +13,8 @@ const getVisibleTasks = (tasks, statusFilter) => {
 };
 
 export const TaskList = () => {
-    // 2. Отримуємо масив завдань із стану Redux
     const tasks = useSelector((state) => state.tasks.items);
-
-    // 3. Отримуємо значення фільтра із стану Redux
     const statusFilter = useSelector((state) => state.filters.status);
-
-    // 4. Обчислюємо масив завдань, які необхідно відображати в інтерфейсі
     const visibleTasks = getVisibleTasks(tasks, statusFilter);
 
     return (
